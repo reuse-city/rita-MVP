@@ -1,0 +1,7 @@
+# config/development/config.yml
+app:
+  debug: true
+  port: 8000
+
+llm:
+  timeout: 60  # Longer timeout for development
