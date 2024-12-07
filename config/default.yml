@@ -1,0 +1,26 @@
+# config/default.yml
+app:
+  name: RITA
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+
+llm:
+  service: "ollama"
+  base_url: "http://ollama:11434"
+  model: "orca-mini"  # Change to smaller model
+  timeout: 30
+
+vision:
+  enabled: false
+  model: "yolov8n"
+  confidence_threshold: 0.5
+
+voice:
+  enabled: false
+  model: "base"
+  language: "en"
+
+safety:
+  max_requests_per_minute: 60
+  require_safety_warnings: true

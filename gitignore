@@ -1,4 +1,3 @@
-# .gitignore
 # Python
 __pycache__/
 *.py[cod]
@@ -39,3 +38,31 @@ config/*.yml
 logs/
 *.log
 .env
+
+# Docker
+.docker/
+ollama_data/
+
+# OLLAMA
+models/
+olympia.blob
+
+# Development
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Debug files
+debug/
+*.debug
+
+# Local development settings
+.local/
