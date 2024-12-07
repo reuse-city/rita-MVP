@@ -1,23 +1,11 @@
-# Create initial requirements.txt
-echo "# Core dependencies
+# Core dependencies
 fastapi>=0.104.0
 uvicorn>=0.24.0
-python-multipart>=0.0.6  # For file uploads
+python-multipart>=0.0.6
 pydantic>=2.4.2
-
-# LLM dependencies
 requests>=2.31.0  # For Ollama API
-
-# Image processing
-ultralytics>=8.0.0  # YOLOv8
-Pillow>=10.1.0
-numpy>=1.24.0
-
-# Voice processing
-openai-whisper>=20231117
-torch>=2.1.0
-torchaudio>=2.1.0
+PyYAML>=6.0.1    # For configuration files
 
 # Testing
 pytest>=7.4.3
-pytest-asyncio>=0.21.1" > requirements.txt
+pytest-asyncio>=0.21.1

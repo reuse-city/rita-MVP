@@ -1,7 +1,7 @@
 # src/core/chat/engine.py
-from typing import List, Optional
-from src.models.chat import ChatMessage
-from src.services.llm.base import BaseLLMService
+from typing import List, Optional, Tuple
+from services.llm.base import BaseLLMService
+from models.chat import ChatMessage
 
 class ChatEngine:
     def __init__(self, llm_service: BaseLLMService):
@@ -15,7 +15,7 @@ class ChatEngine:
         self,
         message: str,
         context: Optional[List[ChatMessage]] = None
-    ) -> tuple[str, List[ChatMessage]]:
+    ) -> Tuple[str, List[ChatMessage]]:
         # Convert context to format expected by LLM
         llm_context = []
         if context:

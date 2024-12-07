@@ -1,7 +1,0 @@
-# config/production/config.yml
-app:
-  debug: false
-  port: 80
-
-safety:
-  max_requests_per_minute: 30  # More conservative in production

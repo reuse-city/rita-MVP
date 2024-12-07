@@ -1,4 +1,4 @@
-# config/default.yml (base configuration with default values)
+# config/default.yml
 app:
   name: RITA
   host: "0.0.0.0"
@@ -7,8 +7,8 @@ app:
 
 llm:
   service: "ollama"
-  base_url: "http://localhost:11434"
-  model: "llama2"
+  base_url: "http://ollama:11434"
+  model: "orca-mini"  # Change to smaller model
   timeout: 30
 
 vision:

@@ -7,18 +7,21 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Ollama
-RUN curl https://ollama.ai/install.sh | sh
-
 # Set working directory
 WORKDIR /app
 
 # Copy requirements first for better caching
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Upgrade pip and install requirements with retry
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application
 COPY . .
+
+# Add src directory to Python path
+ENV PYTHONPATH=/app
 
 # Create volume for config
 VOLUME /app/config
@@ -26,10 +29,12 @@ VOLUME /app/config
 # Expose port
 EXPOSE 8000
 
-# Start both Ollama and the application
+# Set environment variable
+ENV RITA_ENV=production
+
+# Copy entrypoint script and set permissions
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-ENTRYPOINT ["docker-entrypoint.sh"]
 
-# Add environment variable
-ENV RITA_ENV=production
+# Start the application
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

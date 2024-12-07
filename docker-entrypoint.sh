@@ -1,19 +1,21 @@
-# docker-entrypoint.sh
 #!/bin/bash
 set -e
 
-# Start Ollama in the background
-ollama serve &
-
 # Wait for Ollama to be ready
 echo "Waiting for Ollama to start..."
-until curl -s http://localhost:11434/api/tags > /dev/null; do
+until curl -s http://ollama:11434/api/tags > /dev/null; do
+    echo "Waiting for Ollama service..."
     sleep 1
 done
 
-# Pull the required model
-echo "Pulling Llama 2 model..."
-ollama pull llama2
+echo "Pulling Orca Mini model..."
+curl -X POST http://ollama:11434/api/pull -d '{"name": "orca-mini"}'
+
+echo "Waiting for model pull to complete..."
+until curl -s http://ollama:11434/api/tags | grep -q "orca-mini"; do
+    echo "Waiting for model to be ready..."
+    sleep 5
+done
 
 # Start the application
 echo "Starting RITA..."
